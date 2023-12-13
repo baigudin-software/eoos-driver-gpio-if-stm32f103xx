@@ -32,13 +32,17 @@ static GpioController* getController()
     
 Gpio* Gpio::create(Config const& config)
 {
-    GpioController* const controller( getController() );    
-    lib::UniquePointer<Gpio> res( controller->createResource(config) );
-    if( !res.isNull() )
+    lib::UniquePointer<Gpio> res;
+    GpioController* const controller( getController() );
+    if( controller != NULLPTR )
     {
-        if( !res->isConstructed() )
+        res.reset( controller->createResource(config) );
+        if( !res.isNull() )
         {
-            res.reset();
+            if( !res->isConstructed() )
+            {
+                res.reset();
+            }
         }
     }
     return res.release();
