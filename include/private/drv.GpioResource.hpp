@@ -1,7 +1,7 @@
 /**
  * @file      drv.GpioResource.hpp
  * @author    Sergey Baigudin, sergey@baigudin.software
- * @copyright 2023, Sergey Baigudin, Baigudin Software
+ * @copyright 2023-2024, Sergey Baigudin, Baigudin Software
  */
 #ifndef DRV_GPIORESOURCE_HPP_
 #define DRV_GPIORESOURCE_HPP_
@@ -11,7 +11,7 @@
 #include "drv.Gpio.hpp"
 #include "cpu.Registers.hpp"
 #include "lib.NoAllocator.hpp"
-#include "lib.Mutex.hpp"
+#include "sys.Mutex.hpp"
 #include "lib.Guard.hpp"
 
 namespace eoos
@@ -59,7 +59,7 @@ public:
         /**
          * @brief All the resource guard.
          */        
-        lib::Mutex<lib::NoAllocator> mutex;
+        sys::Mutex mutex;
 
     };
 
@@ -175,7 +175,7 @@ private:
     /**
      * @brief This resource mutex.
      */
-    lib::Mutex<A> mutex_;
+    sys::Mutex mutex_;
     
 };
 
